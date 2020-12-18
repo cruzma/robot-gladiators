@@ -76,6 +76,54 @@ var fight = function(enemyName){
 
 };
 
+var shop = function(){
+  var shopOptionPrompt = window.prompt("would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL' 'UPGRADE', or 'LEAVE' to make a choice");
+
+  switch(shopOptionPrompt){
+    case "REFILL":
+    case "refill":
+      if(playerMoney >= 7){      
+        window.alert("refill players health by 20 for 7 dollars.");
+        
+        //increase player health and decreas money
+        playerHealth = playerHelath + 20;
+        playerMoney = playerMoney - 7;
+      } else{
+        window.alert("you dont have enough money!");
+      }
+
+      break;
+    case "UPGRADE":
+    case "upgrade":
+      if(playerMoney >= 7){      
+        window.alert("Upgrading player's attack by 6 for 7 dollars.");
+
+        //increase attack and decrease money
+        playerAttack = playerAttack + 6;
+        playerMoney = playerMoney - 7;
+      }else{
+        window.alert("you dont have enough money!");
+      }
+
+      break;
+
+    case "LEAVE":
+    case "leave":
+      window.alert("Leaving the store.")
+      //do nothing, so function will end
+      break;
+
+    default:
+      window.alert("You did not pick a valid option. try again.");
+
+      //call shop() again to forc player to pick a valid option
+      shop();
+      break;
+
+
+  }
+}
+
 var startGame = function(){
   
   playerHealth = 100;
@@ -90,6 +138,14 @@ var startGame = function(){
       enemyHealth = 50;
       
       fight(pickedEnemyName);
+
+      if(playerHealth > 0 && i < enemyNames.length - 1){
+        var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
+
+        if(storeConfirm){
+          shop();
+        }
+      }
     }else{
       window.alert("We have lost your robot in battle! Game over!");
       break;
@@ -113,6 +169,7 @@ var endGame = function(){
     var playAgainConfirm = window.confirm("Would you like to play again?");
     
     if(playAgainConfirm){
+      shop();
       startGame();
     }else{
       window.alert("Thank you for playing Robot Galdiator! COme back soon!");
