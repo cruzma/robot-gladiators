@@ -9,8 +9,16 @@ var randomNumber = function(min , max){
   return value;
 }
 
+var getPlayerName = function(){
+  var name = "";
+  
+  while(name === "" || name === null){
+    name = prompt("what is your robots name?");
+  }
+}
+
 var playerInfo = {
-  name: window.prompt("What is your robots name"),
+  name: getPlayerName(),
   health: 100,
   attack: 10,
   money: 10,
@@ -24,7 +32,7 @@ var playerInfo = {
       window.alert("Refilling player's health by 20 for 7 dollars.");
       this.health += 20;
       this.money -= 7;
-    } 
+    }
     else {
       window.alert("You don't have enough money!");
     }
@@ -34,12 +42,12 @@ var playerInfo = {
       window.alert("Upgrading player's attack by 6 for 7 dollars.");
       this.attack += 6;
       this.money -= 7;
-    } 
+    }
     else {
       window.alert("You don't have enough money!");
     }
   }
-}
+};
 
 console.log(playerInfo.name, playerInfo.attack, playerInfo.health);
 
@@ -57,6 +65,9 @@ var enemyInfo = [
     attack: randomNumber(10, 14)
   }
 ];
+
+
+
 
 var fight = function(enemy){
   
@@ -160,8 +171,8 @@ var shop = function(){
 
 var startGame = function(){
   
-//resetplayer stats
-playerInfo();
+//reset player stats
+playerInfo;
 
   for(var i = 0; i < enemyInfo.length; i++){
   
