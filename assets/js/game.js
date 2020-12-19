@@ -90,7 +90,7 @@ var fightOrSkip = function() {
       window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
       // subtract money from playerMoney for skipping
       playerInfo.playerMoney = playerInfo.money - 10;
-      shop();
+      
       return true;
     }
   }
@@ -150,27 +150,27 @@ var fight = function(enemy){
 
 
 var shop = function(){
-  var shopOptionPrompt = window.prompt("would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL' 'UPGRADE', or 'LEAVE' to make a choice");
+  var shopOptionPrompt = window.prompt("Type 1 to REFILL your health, type 2 to UPGRADE your attack, or type 3 to LEAVE the store?");
+  shopOptionPrompt = parseInt(shopOptionPrompt);
 
   switch(shopOptionPrompt){
     
-    case "REFILL":
-    case "refill":
+      case 1:
       playerInfo.refillHealth();
       break;
 
-    case "UPGRADE":
-    case "upgrade":
+    
+      case 2:
       playerInfo.upgradeAttack();
       break;
 
-    case "LEAVE":
-    case "leave":
+    
+      case 3:
       window.alert("Leaving the store.")
       //do nothing, so function will end
       break;
 
-    default:
+      default:
       window.alert("You did not pick a valid option. try again.");
 
       //call shop() again to forc player to pick a valid option
@@ -225,7 +225,7 @@ var endGame = function(){
     var playAgainConfirm = window.confirm("Would you like to play again?");
     
     if(playAgainConfirm){
-      shop();
+      
       startGame();
     }else{
       window.alert("Thank you for playing Robot Galdiator! COme back soon!");
